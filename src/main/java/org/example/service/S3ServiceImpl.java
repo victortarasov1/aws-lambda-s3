@@ -11,8 +11,8 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.example.constant.Constants.INPUT_PREFIX;
 import static org.example.constant.Constants.OUTPUT_PREFIX;
 
@@ -45,7 +45,7 @@ public class S3ServiceImpl implements S3Service {
     }
 
     private static String readObjectData(ResponseInputStream<?> inputStream) throws IOException {
-        var reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        var reader = new BufferedReader(new InputStreamReader(inputStream, UTF_8));
         var content = new StringBuilder();
         var line = "";
         while ((line = reader.readLine()) != null) content.append(line);
