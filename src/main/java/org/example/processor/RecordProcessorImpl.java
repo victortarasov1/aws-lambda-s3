@@ -3,14 +3,17 @@ package org.example.processor;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.LambdaRuntime;
 import com.amazonaws.services.lambda.runtime.events.models.s3.S3EventNotification;
+import lombok.RequiredArgsConstructor;
 import org.example.service.S3Service;
-import org.example.service.S3ServiceImpl;
+import org.springframework.stereotype.Service;
 
-import static org.example.constant.Constants.INPUT_PREFIX;
+import static org.example.config.constant.Constants.INPUT_PREFIX;
 
+@Service
+@RequiredArgsConstructor
 public class RecordProcessorImpl implements RecordProcessor {
 
-    private final S3Service service = new S3ServiceImpl();
+    private final S3Service service;
     private final LambdaLogger logger = LambdaRuntime.getLogger();
 
     @Override

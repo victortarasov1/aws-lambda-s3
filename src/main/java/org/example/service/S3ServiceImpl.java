@@ -2,6 +2,8 @@ package org.example.service;
 
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.LambdaRuntime;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -13,11 +15,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.example.constant.Constants.INPUT_PREFIX;
-import static org.example.constant.Constants.OUTPUT_PREFIX;
+import static org.example.config.constant.Constants.INPUT_PREFIX;
+import static org.example.config.constant.Constants.OUTPUT_PREFIX;
 
+@Service
+@RequiredArgsConstructor
 public class S3ServiceImpl implements S3Service {
-    private final S3Client s3Client = S3Client.builder().build();
+    private final S3Client s3Client;
     private final LambdaLogger logger = LambdaRuntime.getLogger();
 
     @Override

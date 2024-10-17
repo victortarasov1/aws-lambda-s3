@@ -1,4 +1,4 @@
-package org.example.constant;
+package org.example.config.constant;
 
 public class Constants {
     public final static String INPUT_PREFIX = "input/";
